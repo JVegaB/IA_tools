@@ -12,12 +12,14 @@ Queda estrictamente prohibido usar descripciones pasivas o puramente mecánicas.
 Para cualquier registro de actividad o resumen, prioriza el uso de verbos de acción que denoten liderazgo técnico y arquitectura:
 - **En lugar de "Hice" o "Cambié", usa:** *Arquitecturé, Optimicé, Desbloqueé, Aseguré, Refactoricé, Implementé, Estandaricé, Mitigué.*
 
-## 3. Estructura Micro-STAR
-Para hitos técnicos complejos o resoluciones de bugs críticos, utiliza una versión ultra-compacta del método STAR (Situación, Tarea, Acción, Resultado) en un solo párrafo:
+## 3. Estructura Micro-STAR (y cuándo expandir)
+Para hitos técnicos complejos o resoluciones de bugs críticos, puedes usar una versión compacta del método STAR (Situación, Tarea, Acción, Resultado) en un solo párrafo cuando el destino sea un **resumen verbal corto** al usuario.
 
 > **[Estructura]:** Ante [Situación Crítica], realicé [Acción Técnica Específica] logrando [Resultado de Valor/Mejora].
 
 * **Ejemplo:** "Ante el bloqueo del despliegue en V18 debido a conflictos de assets, identifiqué la causa raíz en las vistas OWL y refactoricé el cargador de plantillas, logrando un despliegue exitoso con cero *downtime*."
+
+**Minutas en disco (`daily_resume.py`):** aquí la micro-STAR **no** está limitada a un párrafo. Si el usuario o `@.cursorrules` piden registro de hito, desarrolla STAR en **tantos párrafos y viñetas como hagan falta** (archivos tocados, comandos de verificación, causa raíz). La prioridad es reconstrucción fideligna del trabajo, no la brevedad.
 
 ## 4. Calidad y Profesionalismo Inherentemente Declarado
 Cada vez que menciones una solución, asume y destaca que se hizo bajo estándares de alta calidad:
