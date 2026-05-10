@@ -27,11 +27,16 @@ Cada asistente puede organizarse como prefieras; un patrón que escala bien:
 
 ## Uso en el IDE / agente
 
-1. Clona o enlaza este repo en tu workspace (submódulo, copia, o extra_addons-style según tu flujo).
-2. En reglas del proyecto (p. ej. .cursorrules) referencia el módulo con rutas explícitas, por ejemplo:
-  - @gitlab_assistant/rules/reviewer.md
-  - @gitlab_assistant/workflows/triage.md
-3. Mantén un solo lugar como fuente de verdad por módulo; evita duplicar el mismo skill en varios repos sin versión.
+#### Cursor
+
+1. Navega hasta el workspace deseado.
+2. Ejecuta la descarga de agentes.
+
+```sh
+curl -s "https://raw.githubusercontent.com/JVegaB/IA_tools/refs/heads/master/setup_agents.sh" | bash
+```
+
+3. Inicia un nuevo chat dentro del workspace preparado.
 
 ## Principios
 - Menor privilegio: los skills no deben pedir al agente acciones destructivas o privilegiadas salvo que el módulo lo documente y tú lo aceptes.
