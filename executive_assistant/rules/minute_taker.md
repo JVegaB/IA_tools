@@ -6,7 +6,20 @@ Tu misión es reducir la carga administrativa capturando el valor técnico en ti
 2. **Decisión de Arquitectura:** Se elige un camino técnico.
 3. **Desbloqueo:** Se resuelve un problema que tenía el desarrollo detenido.
 4. **Skill aplicada:** Has leído y seguido un `SKILL.md` (usuario o `.cursor/skills-cursor/...`) y completaste la acción sustantiva que esa skill ordenaba (implementación, CI, canvas, etc.). No dispares auto-log si solo leíste la skill sin ejecutar trabajo.
-5. **Verificación cerrada:** Tests pasan, build/instalación OK, o criterio de “listo para revisión” acordado en el hilo.
+5. **Verificación cerrada:** Tests pasan, build/instalación OK, o criterio de "listo para revisión" acordado en el hilo.
+6. **Acciones de GitLab** (cualquiera de las siguientes):
+   - Triage completado: ejecutaste `view_context.py` o `view_mr_diff.py` y entregaste un reporte de pendientes clasificado.
+   - Resolución de feedback: aplicaste cambios de código en respuesta a comentarios de revisores.
+   - `git commit` o `git push` exitoso, incluyendo amends y force-push.
+   - Actualización de metadatos del MR: descripción, nota con `add_note.py`, o `glab mr update`.
+   - Cualquier análisis técnico (manifests, permisos, CI) que derivó en una conclusión accionable.
+
+### Ejemplos de gatillo GitLab → log inmediato
+- Ejecuté `view_context.py mr 71` y clasifiqué comentarios pendientes → **log al entregar el reporte.**
+- Edité `tests/test_sale_order.py` en respuesta a feedback de revisor y hice `git commit` → **log tras el commit/push.**
+- Hice `git commit --amend` para limpiar un squash y `git push --force-with-lease` → **log al confirmar el push.**
+- Actualicé la descripción del MR con `glab mr update` → **log al confirmar "✓ updated body".**
+- Verifiqué manifests y concluí "nada que cambiar" → **log al dar la conclusión.**
 
 ## 2. Profundidad obligatoria del texto que envías al script
 Las minutas **no** tienen límite de longitud por defecto. El usuario espera poder **reconstruir el hito** sin estar en la sala: qué archivos, qué decisión, qué error había antes y cómo se comprobó el después.
@@ -32,7 +45,7 @@ Cuando se dispare el Auto-Log, o cuando yo use el comando `/log [texto]`, TIENES
 
 `python3 ./.custom_agents/executive_assistant/scripts/daily_resume.py "[PROYECTO]: [minuta desarrollada — ver sección 2]"`
 
-Si varios hitos ocurren en el mismo turno del agente, **agrupa en un solo argumento**: preferiblemente **un único bloque narrativo largo** que cubra todos los hitos; solo usa separadores breves (`; ` o subtítulos en la misma cadena) si ayuda a la lectura. Respeta “no log” / “sin minuta” / “skip log” en el mensaje del usuario para ese turno.
+Si varios hitos ocurren en el mismo turno del agente, **agrupa en un solo argumento**: preferiblemente **un único bloque narrativo largo** que cubra todos los hitos; solo usa separadores breves (`; ` o subtítulos en la misma cadena) si ayuda a la lectura. Respeta "no log" / "sin minuta" / "skip log" en el mensaje del usuario para ese turno.
 
 Para textos largos o multilínea, usa comillas que preserven saltos de línea o un heredoc en shell; el script escribe el argumento tal cual en el archivo de salida.
 
@@ -43,4 +56,3 @@ No sustituyas esto por crear tú un archivo de minuta o log en el workspace (p. 
 
 ## 4. Comandos de Interacción Adicionales
 - `/diff [código]`: Analiza el cambio, explica el impacto funcional y registra automáticamente la tarea en el log usando el script (con la misma profundidad que la sección 2).
-
