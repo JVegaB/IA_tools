@@ -33,7 +33,18 @@ Cada asistente puede organizarse como prefieras; un patrón que escala bien:
 2. Ejecuta la descarga de agentes.
 
 ```sh
-curl -s "https://raw.githubusercontent.com/JVegaB/IA_tools/refs/heads/master/setup_agents.sh" | bash
+curl -s "https://raw.githubusercontent.com/JVegaB/IA_tools/refs/heads/master/cursor_setup_agents.sh" | bash
+```
+
+3. Inicia un nuevo chat dentro del workspace preparado.
+
+#### Antigravity
+
+1. Navega hasta el workspace deseado.
+2. Ejecuta la descarga de agentes.
+
+```sh
+curl -s "https://raw.githubusercontent.com/JVegaB/IA_tools/refs/heads/master/antigravity_setup_agents.sh" | bash
 ```
 
 3. Inicia un nuevo chat dentro del workspace preparado.

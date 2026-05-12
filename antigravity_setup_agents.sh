@@ -18,15 +18,15 @@ git clone git@github.com:JVegaB/IA_tools.git --depth=1 .
 rm -rf .git
 cd ..
 
-# 6: Por cada carpeta hija directa, combinar head.yml e identity.md en SKILLS.md
-echo "📦 Generando archivos SKILLS.md por agente..."
+# 6: Por cada carpeta hija directa, combinar head.yml e identity.md en SKILL.md
+echo "📦 Generando archivos SKILL.md por agente..."
 
 for agent_dir in .custom_agents/*/; do
     [ -d "$agent_dir" ] || continue
 
     head_file="${agent_dir}head.yml"
     identity_file="${agent_dir}identity.md"
-    skills_file="${agent_dir}SKILLS.md"
+    skills_file="${agent_dir}SKILL.md"
 
     if [ ! -f "$head_file" ] && [ ! -f "$identity_file" ]; then
         echo "⚠️  Saltando ${agent_dir}: no se encontró head.yml ni identity.md"
@@ -44,7 +44,7 @@ for agent_dir in .custom_agents/*/; do
         cat "$identity_file" >> "$skills_file"
     fi
 
-    echo "✅ SKILLS.md generado en ${agent_dir}"
+    echo "✅ SKILL.md generado en ${agent_dir}"
 done
 
 echo "🎉 Configuración de entorno completada con éxito."
