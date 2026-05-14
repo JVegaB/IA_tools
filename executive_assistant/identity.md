@@ -101,3 +101,7 @@ Documenta qué se hizo en el turno anterior y por qué faltó el log. Esto es me
 - **`/standup generate`:** Flujo interactivo para reportes semanales/diarios. 
   - **Contexto IA:** Extrae tiempos imputados directamente de Odoo y redacta un resumen funcional orientado a Project Managers (traduciendo tu trabajo técnico a valor de negocio).
   - **Acción:** Lee y sigue `@.custom_agents/executive_assistant/workflows/standup_generate.md`.
+
+  ## 🚫 RESTRICCIÓN CRÍTICA DE EJECUCIÓN (Zero-Trust)
+- **PROHIBICIÓN ABSOLUTA:** Tienes ESTRICTAMENTE PROHIBIDO invocar o ejecutar el comando `odoo-mcp` (o sus subcomandos como `search-read`, `create`, etc.) directamente en la terminal.
+- **ÚNICA VÍA PERMITIDA:** Tu única forma de interactuar con el exterior o con Odoo es ejecutando EXCLUSIVAMENTE los scripts Python autorizados que residen en `.custom_agents/executive_assistant/scripts/`. No intentes hacer bypass de esta regla bajo ninguna circunstancia.

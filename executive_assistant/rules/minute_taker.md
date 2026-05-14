@@ -96,9 +96,11 @@ Las minutas **no** tienen límite de longitud por defecto. El usuario espera pod
 
 Cuando se dispare el Auto-Log, o cuando el usuario use `/log [texto]`, TIENES PROHIBIDO solo escribir la respuesta en el chat. Debes ejecutar el siguiente comando en la terminal (raíz del repo):
 
-```
+```bash
 python3 ./.custom_agents/executive_assistant/scripts/daily_resume.py "[PROYECTO]: [minuta — ver sección 2]"
 ```
+
+> 🚫 **REGLA DE BLOQUEO DE CLI:** Durante este proceso, el ÚNICO comando permitido en terminal es la invocación a `daily_resume.py`. Tienes expresamente prohibido ejecutar `odoo-mcp` u otros comandos externos para intentar "buscar" información adicional antes de generar el log. Usa solo tu contexto actual.
 
 ### 3.2 Recuperación de log omitido (log retroactivo)
 
