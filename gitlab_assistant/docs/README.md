@@ -8,7 +8,7 @@ Documentación del paquete **gitlab_assistant**: reglas, flujos y scripts para q
 - **Prohibido** para el agente: `git push`, fusionar MRs, cambiar etiquetas, títulos o milestones en el remoto.
 - **Permitido** (vía `glab` y scripts): listar trabajo, leer contexto de issues/MR, ver diffs y **publicar comentarios** con `add_note.py` cuando tú lo pidas.
 
-La identidad resumida vive en [`../identity.md`](../identity.md). La integración con Cursor suele declararse en `.cursorrules` del repositorio (comandos `/gl triage`, `/gl resolve`).
+La identidad resumida vive en [`../identity.md`](../identity.md). La integración con Cursor suele declararse en `.cursorrules` del repositorio (por ejemplo `/gla triage` o `/gla documentate`).
 
 ## Requisitos
 
@@ -26,10 +26,10 @@ En entornos restringidos (p. ej. sandbox de CI o herramientas sin permisos compl
 
 | Comando | Acción del agente |
 |---------|-------------------|
-| `/gl triage` | Lee [`../rules/reviewer.md`](../rules/reviewer.md) y sigue [`../workflows/triage.md`](../workflows/triage.md). |
-| `/gl resolve [issue\|mr] <id>` | Lee el mismo `reviewer.md` y sigue [`../workflows/resolve_feedback.md`](../workflows/resolve_feedback.md). |
+| `/gla triage` | Lee [`../rules/reviewer.md`](../rules/reviewer.md) y sigue [`../workflows/triage.md`](../workflows/triage.md). |
+| `/gla documentate <link al MR>` | Lee [`../rules/mr_documentation.md`](../rules/mr_documentation.md) y sigue [`../workflows/documentate_mr.md`](../workflows/documentate_mr.md). |
 
-*(Si usas otro prefijo, por ejemplo `/lg`, conviene alinearlo en `.cursorrules` con estos mismos archivos.)*
+*Si cambias el prefijo público del paquete, alínialo también en `.cursorrules` para que siga apuntando a estos mismos archivos.*
 
 ## Estructura del paquete
 
@@ -39,10 +39,12 @@ En entornos restringidos (p. ej. sandbox de CI o herramientas sin permisos compl
 │   └── README.md          ← este archivo
 ├── identity.md
 ├── rules/
-│   └── reviewer.md        # Clasificación de comentarios y comunicación
+│   ├── reviewer.md        # Clasificación de comentarios y comunicación
+│   └── mr_documentation.md
 ├── workflows/
 │   ├── triage.md          # Revisión de carga de trabajo
-│   └── resolve_feedback.md
+│   ├── documentate_mr.md
+│   └── resolve_feedback.md # Guía interna de cierre de ciclo; no comando expuesto
 └── scripts/
     ├── list_my_work.py
     ├── view_context.py
@@ -64,7 +66,8 @@ Ejecutar desde la **raíz del repositorio** de trabajo (donde vive `.custom_agen
 ## Flujos (resumen)
 
 - **Triage:** lista tu trabajo → resumen en chat → profundizar por ID → contexto + diff si es MR → clasificar comentarios pendientes según `reviewer.md`. Detalle: [`../workflows/triage.md`](../workflows/triage.md).
-- **Resolver feedback:** cambios locales → revisión → commit local opcional (**sin push**) → resumen → nota en GitLab con `@usuario` según reglas. Detalle: [`../workflows/resolve_feedback.md`](../workflows/resolve_feedback.md).
+- **Documentar MR:** leer descripción + diff → preservar información útil → reescribir body con plantilla estructurada → verificar en GitLab. Detalle: [`../workflows/documentate_mr.md`](../workflows/documentate_mr.md).
+- **Resolver feedback (referencia interna):** `resolve_feedback.md` se conserva como guía operativa para ordenar cambios y notas cuando el triage detecte trabajo accionable, pero ya no se expone como comando de chat.
 
 ## Clasificación de comentarios
 
@@ -72,7 +75,7 @@ Al leer hilos de un MR/issue, el asistente debe clasificar peticiones según [`.
 
 1. **Respuesta directa** (duda, justificación): redactar respuesta y, si aplica, publicar con `add_note.py` / `glab`.
 2. **Acción manual** (título, etiquetas, merge, rebase remoto): indicar que debe hacerse en la web; el agente no lo ejecuta.
-3. **Código / terminal local:** editar en el workspace; `git commit`/`amend` solo si acordado; **sin push**.
+3. **Código / terminal local:** editar en el workspace; `git commit`/`amend` solo si acordado; **sin push**. Si el triage detecta este caso, puede consultarse `../workflows/resolve_feedback.md` como guía interna.
 
 ## Enlaces útiles
 
@@ -81,4 +84,4 @@ Al leer hilos de un MR/issue, el asistente debe clasificar peticiones según [`.
 
 ## Mantenimiento
 
-Si cambias rutas de scripts o comandos `/gl`, actualiza este `README.md`, `scripts.md` y `.cursorrules` para que sigan coincidiendo.
+Si cambias rutas de scripts o comandos `/gla`, actualiza este `README.md`, `scripts.md` y `.cursorrules` para que sigan coincidiendo.

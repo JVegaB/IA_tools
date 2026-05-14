@@ -7,6 +7,8 @@ Este flujo sirve para revisar mi carga de trabajo actual en el repositorio que t
 3. **Profundizar:** Pregúntame: *"¿Qué ID quieres que revisemos a detalle?"*.
 4. **Extraer Contexto:** Cuando te dé el ID (ej. MR 45), ejecuta inmediatamente `python3 ./.custom_agents/gitlab_assistant/scripts/view_context.py` (y `python3 ./.custom_agents/gitlab_assistant/scripts/view_mr_diff.py` si es un MR) para leer todo el hilo.
 5. **Reporte de Pendientes:** Enumera los comentarios pendientes usando las Reglas de Clasificación (Respuestas Directas, Acciones Manuales, Cambios de Código).
+   - Usa `@.custom_agents/gitlab_assistant/rules/reviewer.md` como criterio obligatorio de clasificación.
+   - Si del triage sale trabajo accionable de implementación o respuesta, puedes apoyarte internamente en `@.custom_agents/gitlab_assistant/workflows/resolve_feedback.md` para ordenar el cierre del ciclo, pero **sin** tratarlo como un comando separado para el usuario.
 6. **Auto-Log obligatorio:** Al terminar el reporte del paso 5, ejecuta el script de minutas documentando:
    - El MR/Issue analizado y su estado general (abierto, bloqueado, en revisión).
    - La clasificación de cada comentario pendiente (tipo, autor, prioridad si la tiene).
