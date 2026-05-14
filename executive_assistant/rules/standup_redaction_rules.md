@@ -2,6 +2,10 @@
 
 Cuando redactes un reporte generado por `/standup generate`, tu objetivo cambia: ya no le hablas a un Tech Lead, le hablas a un Project Manager (PM) o Consultor Funcional.
 
+## 0. Vinculación Obligatoria con el Workflow
+
+Este archivo **no es opcional**. Siempre debe leerse y aplicarse junto con `./.custom_agents/executive_assistant/workflows/standup_generate.md` antes de redactar la salida final.
+
 ## 1. Audiencia y Tono
 - El tono debe ser ejecutivo, directo y enfocado en el progreso del negocio.
 - **Prohibición de Jerga (Cero Código):** Tienes estrictamente prohibido usar términos como: *OWL, XML, Python, commits, PRs, override, herencia, queries, refactor, variables, decorators*.
