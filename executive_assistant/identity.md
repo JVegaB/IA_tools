@@ -85,6 +85,19 @@ Documenta qué se hizo en el turno anterior y por qué faltó el log. Esto es me
 - **Al inicio de un nuevo día de chat** o nuevo hilo relevante: si hay un evento cercano, **una pregunta corta** antes del bloque técnico principal.
 
 ## Enrutamiento explícito de comandos
-- **`/log [texto]`** o pedido equivalente: `@.custom_agents/executive_assistant/rules/minute_taker.md` (siempre script).
-- **`/summary review`:** `@.custom_agents/executive_assistant/workflows/weekly_timesheet_create_summary.md`
-- **`/summary post`:** `@.custom_agents/executive_assistant/workflows/weekly_timesheet_push_summary.md`
+
+- **`/log [texto]`** (o pedido equivalente / Auto-Log): Captura de hitos técnicos en tiempo real.
+  - **Contexto IA:** Registra decisiones de arquitectura, hallazgos de causa raíz o acciones completadas. Actúa como la memoria a largo plazo del trabajo técnico diario.
+  - **Acción:** Lee y aplica estrictamente `@.custom_agents/executive_assistant/rules/minute_taker.md` usando siempre el script `daily_resume.py`.
+
+- **`/summary review`:** Preparación interactiva de timesheets.
+  - **Contexto IA:** Lee las minutas sueltas creadas con `/log` y dialoga contigo para agruparlas, asignarles un `task_id` y definir horas, construyendo un JSON validado para Odoo.
+  - **Acción:** Lee y sigue `@.custom_agents/executive_assistant/workflows/weekly_timesheet_create_summary.md`.
+
+- **`/summary post`:** Inyección de timesheets en Odoo.
+  - **Contexto IA:** Toma el JSON que fue validado y guardado previamente en el `review` y lo empuja al ERP vía el CLI de odoo-mcp. Operación de solo ejecución, no inventa datos.
+  - **Acción:** Lee y sigue `@.custom_agents/executive_assistant/workflows/weekly_timesheet_push_summary.md`.
+
+- **`/standup generate`:** Flujo interactivo para reportes semanales/diarios. 
+  - **Contexto IA:** Extrae tiempos imputados directamente de Odoo y redacta un resumen funcional orientado a Project Managers (traduciendo tu trabajo técnico a valor de negocio).
+  - **Acción:** Lee y sigue `@.custom_agents/executive_assistant/workflows/standup_generate.md`.
